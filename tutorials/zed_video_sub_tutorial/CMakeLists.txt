@@ -12,12 +12,15 @@ ENDIF(NOT CMAKE_BUILD_TYPE)
 
 ## Find catkin and any catkin packages
 find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs)
+find_package(OpenCV 4.2.0 EXACT REQUIRED)
+find_package(Boost REQUIRED COMPONENTS filesystem)
+find_package(cv_bridge)
 
 ## Declare a catkin package
 catkin_package()
 
-include_directories(include ${catkin_INCLUDE_DIRS})
+include_directories(include ${catkin_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
 
 ## Build 
 add_executable(zed_video_sub src/zed_video_sub_tutorial.cpp)
-target_link_libraries(zed_video_sub ${catkin_LIBRARIES})
+target_link_libraries(zed_video_sub ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${Boost_LIBRARIES} ${cv_bridge_LIBRARIES})
