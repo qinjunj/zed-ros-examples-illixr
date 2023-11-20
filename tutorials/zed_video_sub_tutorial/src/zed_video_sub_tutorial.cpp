@@ -71,10 +71,10 @@ void imageLeftRectifiedCallback(const sensor_msgs::Image::ConstPtr& msg) {
         cv_bridge::CvImagePtr cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::MONO8);
 
         // Save the rectified grayscale image to a file
-        std::string filename = cam0_data_path.string() + "/" + std::to_string(timestamp_ns) + ".jpg";
+        std::string filename = cam0_data_path.string() + "/" + std::to_string(timestamp_ns) + ".png";
         cv::imwrite(filename, cv_ptr->image);
 
-        cam0_wt_file << timestamp_ns << "," << std::to_string(timestamp_ns) + ".jpg" << std::endl;
+        cam0_wt_file << timestamp_ns << "," << std::to_string(timestamp_ns) + ".png" << std::endl;
 
         ROS_INFO("Rectified grayscale image saved at time %ld", timestamp_ns);
     }
@@ -95,10 +95,10 @@ void imageRightRectifiedCallback(const sensor_msgs::Image::ConstPtr& msg) {
         cv_bridge::CvImagePtr cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::MONO8);
 
         // Save the rectified grayscale image to a file
-        std::string filename = cam1_data_path.string() + "/" + std::to_string(timestamp_ns) + ".jpg";
+        std::string filename = cam1_data_path.string() + "/" + std::to_string(timestamp_ns) + ".png";
         cv::imwrite(filename, cv_ptr->image);
 
-        cam1_wt_file << timestamp_ns << "," << std::to_string(timestamp_ns) + ".jpg" << std::endl;
+        cam1_wt_file << timestamp_ns << "," << std::to_string(timestamp_ns) + ".png" << std::endl;
 
         ROS_INFO("Rectified grayscale image saved at time %ld", timestamp_ns);
     }
